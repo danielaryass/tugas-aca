@@ -1,0 +1,27 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Menu {
+  id                   Int                  @id @default(autoincrement()) // Automatically incrementing ID
+  nama                 String
+  deskripsi            String
+  kategori             String
+  makananpelengkap     MakananPelengkap[]   // Relation to MakananPelengkap
+}
+
+model MakananPelengkap {
+  id        Int    @id @default(autoincrement()) // Automatically incrementing ID
+  nama      String
+  deskripsi String
+  menu_id   Int
+  menu      Menu   @relation(fields: [menu_id], references: [id]) // Defining the relation
+}
