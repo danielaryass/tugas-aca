@@ -10,6 +10,11 @@ app.use((err, req, res, next) => {
   res.status(500).send("Something broke!");
 });
 
+app.get("/",
+  (req, res) => {
+    res.send("Hello World!");
+  }
+)
 app.post("/menus", menuController.createMenu);
 app.get("/menus", menuController.getAllMenus);
 app.get("/menus/:id", menuController.getMenuById);
