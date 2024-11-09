@@ -6,7 +6,7 @@
    // Create a new Menu
    const createMenu = async (req, res) => {
      try {
-       const { nama, deskripsi, kategori } = req.body;
+       const { nama, deskripsi, kategori, makananpelengkap } = req.body;
        const newMenu = await prisma.menu.create({
          data: {
            nama,
