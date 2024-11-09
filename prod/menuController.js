@@ -1,9 +1,19 @@
-// src/controllers/menuController.js
 
-const pool = require('./db'); // Importing the MySQL pool
+const mysql = require('mysql2/promise');
+
+// Create a connection pool
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
+  port: process.env.DB_PORT,
+});
+
 
 // Create a new Menu
 const createMenu = async (req, res) => {
+  console.log('Request Body:', req.body); // Log the request body
   const { nama, deskripsi, kategori, makananPelengkap } = req.body;
 
   try {
